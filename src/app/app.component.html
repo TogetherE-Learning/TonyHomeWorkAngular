@@ -1,15 +1,29 @@
-
+<link rel="stylesheet" href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css">
 <select>
   <option *ngFor="let i of items" value={{i.value}}>
     {{i.text}}
   </option>
 </select>
 
-<table>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">1</th>
+    <th scope="col">2</th>
+    <th scope="col">3</th>
+    <th scope="col">4</th>
+    <th scope="col">5</th>
+    <th scope="col">6</th>
+    <th scope="col">7</th>
+    <th scope="col">8</th>
+  </tr>
+</thead>  
+<tbody>
   <tr *ngFor="let i of service.list">
       <td>
         {{i.fromHostName}}
       </td>
+      
       <td>
         {{i.fromIP}}
       </td>
@@ -32,6 +46,7 @@
         {{i.use}}
       </td>
   </tr>
+</tbody>
 </table>
 
 <router-outlet></router-outlet>
