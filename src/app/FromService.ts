@@ -5,7 +5,7 @@ import { FromModel } from '../app/FromModel';
     providedIn: 'root'
   })
 export class FromService{
-    readonly rootUrl = "http://test9987.azurewebsites.net/api/Values/list/Test";
+    readonly rootUrl = "http://test9987.azurewebsites.net/api/Values/list/";
     constructor(private http: HttpClient) { 
 
     }
@@ -17,10 +17,9 @@ export class FromService{
       })
     };
     public list: Array<FromModel> = [];  
-    getList(){
-      this.http.get<Array<FromModel>>(this.rootUrl,this.httpOptions)
+    getList(input: string){
+      this.http.get<Array<FromModel>>(this.rootUrl+input,this.httpOptions)
         .toPromise()
         .then(resp => this.list = resp as Array<FromModel>);
-        
     }
   }

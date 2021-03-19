@@ -1,19 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges } from '@angular/core';
 import { FromService } from '../app/FromService';
-import { FromModel } from '../app/FromModel';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html'
-  //,styleUrls: ['./app.component.scss']
 })
-export class AppComponent{
+export class AppComponent {
   title = 'TonyHomeWorkAngular';
   public items: any[] = [
-    { value: "test", text: "測試" }
-    ,{ value: "pord", text: "正式" }
+    { value: SurroundingsEnum.Test, text: SurroundingsEnum[SurroundingsEnum.Test] }
+    ,{ value: SurroundingsEnum.Prod, text: SurroundingsEnum[SurroundingsEnum.Prod] }
   ]
   constructor(public service: FromService) { 
-    service.getList();
+    service.getList(SurroundingsEnum[SurroundingsEnum.Test]);
   }
+  onChange(newValue:Event) {
+    let tg:HTMLSelectElement = <HTMLSelectElement>newValue.target;
+    console.log(tg.value);
+    this.service.getList(tg.value);
+  }
+}
+enum SurroundingsEnum {
+  Test = 1,
+  Prod = 2
 }
